@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "A utility to squash your bower dependencies into one file",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "bower",
     "vendor",
