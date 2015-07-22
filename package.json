@@ -11,5 +11,8 @@
     "resources"
   ],
   "author": "selbekk <selbeezy@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "extend": "^3.0.0"
+  }
 }
