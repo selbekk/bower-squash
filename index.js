@@ -6,19 +6,20 @@ function squash(overrides) {
     var defaults = {
         bowerDirectory: 'bower_components',
         bowerFile: 'bower.json',
-        outFile: 'vendor.js',
-        minify: false
+        outFile: 'vendor.js'
     };
 
     var opts = extend({}, defaults, overrides);
 
-    fs.readdir(opts.bowerDirectory, function(err, dependencies) {
+    fs.readFile(opts.bowerFile, function(err, bowerContent) {
         if(err) {
-            console.error('Could not find bower_components directory.');
+            console.error('Could not find bower.json file.');
             throw err;
         }
+        var bowerJson = JSON.parse(bowerContent);
+
         var files = [];
-        dependencies.forEach(function(dependency) {
+        Object.keys(bowerJson.dependencies).forEach(function(dependency) {
             var path = opts.bowerDirectory + '/' + dependency;
             var content = fs.readFileSync(path + '/bower.json');
             var json = JSON.parse(content);
