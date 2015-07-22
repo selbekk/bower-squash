@@ -13,6 +13,7 @@
   "author": "selbekk <selbeezy@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "extend": "^3.0.0"
+    "extend": "^3.0.0",
+    "flatten": "0.0.1"
   }
 }
