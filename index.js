@@ -22,7 +22,18 @@ function squash(overrides) {
             var content = fs.readFileSync(path + '/bower.json');
             var json = JSON.parse(content);
 
-            files.push(path + '/' + json.main);
+            if(!json.main) {
+                return;
+            }
+
+            if(json.main.constructor === Array) {
+                json.main.forEach(function(mainFile) {
+                    files.push(path + '/' + mainFile);
+                });
+            }
+            else {
+                files.push(path + '/' + json.main);
+            }
         });
 
         var contents = [];
