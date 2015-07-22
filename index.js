@@ -1,5 +1,6 @@
 var fs = require('fs');
 var extend = require('extend');
+var flatten = require('flatten');
 
 function squash(overrides) {
     var defaults = {
@@ -22,18 +23,14 @@ function squash(overrides) {
             var content = fs.readFileSync(path + '/bower.json');
             var json = JSON.parse(content);
 
-            if(!json.main) {
-                return;
-            }
+            var mainFiles = flatten([ json.main ]);
 
-            if(json.main.constructor === Array) {
-                json.main.forEach(function(mainFile) {
+            mainFiles.forEach(function(mainFile) {
+                if(mainFile.indexOf('.js') > -1) {
                     files.push(path + '/' + mainFile);
-                });
-            }
-            else {
-                files.push(path + '/' + json.main);
-            }
+                }
+            });
+
         });
 
         var contents = [];
