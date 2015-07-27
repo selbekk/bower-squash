@@ -1,6 +1,6 @@
 {
   "name": "bower-squash",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A utility to squash your bower dependencies into one file",
   "main": "index.js",
   "keywords": [
