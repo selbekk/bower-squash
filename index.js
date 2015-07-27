@@ -34,9 +34,8 @@ function squash(overrides) {
 
         });
 
-        var contents = [];
-        files.forEach(function(file) {
-            contents.push(fs.readFileSync(file, 'UTF-8'));
+        var contents = files.map(function(file) {
+            return fs.readFileSync(file, 'UTF-8');
         });
 
         fs.writeFile(opts.outFile, contents.join('\n'), function(err) {
@@ -44,6 +43,7 @@ function squash(overrides) {
                 console.error('could not write to ' + opts.outFile + '. Sorry!');
                 throw err;
             }
+
             console.log(files.length + ' file' + (files.length !== 1 ? 's' : '')
                 + ' written to ' + opts.outFile + ' for a total of '
                 + contents.join('\n').length + ' bytes.');
